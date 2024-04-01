@@ -27,6 +27,7 @@ export default {
     margin: 0;
     padding: 10px;
     box-sizing: border-box;
+    font-family: rabikiso;
   }
   .main-container {
     display: flex;

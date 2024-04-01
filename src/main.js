@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Podcasts from './components/Podcasts.vue'
 import Home from './components/Home.vue'
 import App from './App.vue'
+import './assets/sass/style.scss'
 
 const router = createRouter({
     history: createWebHistory(),
