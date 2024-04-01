@@ -1,26 +1,53 @@
 <template>
-  <div class="container">
-    <div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
-        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
-        eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-        deserunt mollit anim id est laborum.
-    </div>
-  </div>
+    <h2 v-if="data && data.results[0]">
+      {{ data.results[0].artistName }}
+    </h2>
+    <table v-if="data && data.results">
+      <tr v-for="podcastData in data.results">
+        <td>
+          {{ podcastData.trackName }}
+        </td>
+        <td>
+          {{ podcastData.shortDescription }}
+        </td>
+        <td>
+          {{ podcastData.trackTimeMillis }}
+        </td>
+        <td>
+          <a href="{{ podcastData.episodeUrl }}">
+            Listen
+          </a>
+        </td>
+      </tr>
+    </table>
 </template>
 
+<script>
+import PodcastItem from './PodcastItem.vue'
+
+export default {
+  components: {
+    'podcast-item': PodcastItem,
+  },
+  methods: {
+    async fetchData() {
+      const apiUrl = "https://itunes.apple.com/lookup?id=917918570&media=podcast&entity=podcastEpisode&limit=20"  
+      const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`)
+      const jsonResponse = await response.json()
+      this.data = await JSON.parse(jsonResponse.contents);
+      console.log(this.data)
+    },    
+  },
+  data() {
+    return {
+      data: null
+    }
+  },
+  created() {
+    this.fetchData()
+  },
+};
+</script>
+
 <style scoped>
-    .container {
-        flex: 0 0 100%;
-        max-width: 350px;
-    }
-    .container > div {
-        background: #222;
-        margin: 5px;
-        padding: 10px;
-        border-radius: 10px;
-        height: 100%;
-        box-sizing: border-box;
-    }
 </style>

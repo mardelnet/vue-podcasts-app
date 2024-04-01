@@ -21,7 +21,11 @@ export default {
 <style>
   body {
     color: white;
-    background: black
+    background: black;
+    overflow: hidden;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
   }
   .main-container {
     display: flex;
@@ -29,9 +33,11 @@ export default {
   .container {
     flex: 1;
     background: #222;
-    margin: 5px;
     padding: 10px;
     border-radius: 10px;
     box-sizing: border-box;
+    overflow: scroll;
+    height: inherit;
+    max-height: calc(100vh - 20px);
   }
 </style>
