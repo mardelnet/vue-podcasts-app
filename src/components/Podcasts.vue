@@ -28,12 +28,7 @@
 </template>
 
 <script>
-import PodcastItem from './PodcastItem.vue'
-
 export default {
-  components: {
-    'podcast-item': PodcastItem,
-  },
   methods: {
     async fetchData() {
       const podcastId = this.$route.params.id

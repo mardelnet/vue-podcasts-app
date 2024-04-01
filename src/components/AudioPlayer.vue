@@ -8,12 +8,7 @@
 </template>
 
 <script>
-import PodcastItem from './PodcastItem.vue'
-
 export default {
-  components: {
-    'podcast-item': PodcastItem,
-  },
   methods: {
     async fetchData() {
       const apiUrl = "https://itunes.apple.com/lookup?id=917918570&media=podcast&entity=podcastEpisode&limit=20"  

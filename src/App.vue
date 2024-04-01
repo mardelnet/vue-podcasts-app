@@ -35,7 +35,7 @@ export default {
   .container {
     flex: 1;
     background: #222;
-    padding: 10px;
+    padding: 25px;
     border-radius: 10px;
     box-sizing: border-box;
     overflow: scroll;
