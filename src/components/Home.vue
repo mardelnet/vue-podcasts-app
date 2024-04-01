@@ -1,4 +1,5 @@
 <template>
+  <div class="container">
     <h2>Top Podcasts</h2>
     <div v-if="data && data.feed">
     <swiper
@@ -19,6 +20,7 @@
         </swiper-slide>
     </swiper>
     </div>
+  </div>
 </template>
 
 <script>
@@ -50,20 +52,20 @@ export default {
 };
 </script>
 
-<style>
-  .swiper {
-    height: 100%;
-    max-height: 100vw;
-    min-height: 0;
-    min-width: 0;
-    max-width: 100vw;
-    width: 100%;
-    overflow: hidden;
-  }
-  .swiper {
-    display: grid;
-  }
-  .swiper-wrapper {
-    min-width: 0;
-  }
+<style scoped>
+.swiper {
+  height: 100%;
+  max-height: 100vw;
+  min-height: 0;
+  min-width: 0;
+  max-width: 100vw;
+  width: 100%;
+  overflow: hidden;
+}
+.swiper {
+  display: grid;
+}
+.swiper-wrapper {
+  min-width: 0;
+}
 </style>

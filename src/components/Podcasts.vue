@@ -1,4 +1,8 @@
 <template>
+  <div class="container">
+    <div v-if="!data">
+      Loading... 
+    </div>
     <h2 v-if="data && data.results[0]">
       {{ data.results[0].artistName }}
     </h2>
@@ -20,6 +24,7 @@
         </td>
       </tr>
     </table>
+  </div>
 </template>
 
 <script>
@@ -31,7 +36,8 @@ export default {
   },
   methods: {
     async fetchData() {
-      const apiUrl = "https://itunes.apple.com/lookup?id=917918570&media=podcast&entity=podcastEpisode&limit=20"  
+      const podcastId = this.$route.params.id
+      const apiUrl = `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20"` 
       const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`)
       const jsonResponse = await response.json()
       this.data = await JSON.parse(jsonResponse.contents);

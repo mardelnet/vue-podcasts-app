@@ -1,5 +1,11 @@
 <template>
-  <div class="container">
+  <div class="sidebar-container">
+    <div>
+      <router-link v-bind:to="{ name: 'home' }">
+        Home 
+      </router-link>
+      Search    
+    </div>
     <div>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
         dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
@@ -11,16 +17,15 @@
 </template>
 
 <style scoped>
-    .container {
-        flex: 0 0 100%;
-        max-width: 350px;
-    }
-    .container > div {
-        background: #222;
-        margin: 5px;
-        padding: 10px;
-        border-radius: 10px;
-        height: 100%;
-        box-sizing: border-box;
-    }
+.sidebar-container {
+    flex: 0 0 100%;
+    max-width: 350px;
+}
+.sidebar-container > div {
+    background: #222;
+    margin: 0 10px 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
 </style>

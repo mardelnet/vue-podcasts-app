@@ -1,19 +1,20 @@
 <template>
   <div class="main-container"> 
     <sidebar />
-    <div class="container">
-      <router-view></router-view>  
-    </div>
+    <router-view></router-view>  
   </div>
+  <audio-player />
 </template>
 
 <script>
 import 'swiper/css';
 import Sidebar from './components/Sidebar.vue';
+import AudioPlayer from './components/AudioPlayer.vue';
 
 export default {
   components: {
     'sidebar': Sidebar,
+    'audio-player': AudioPlayer,
   },
 };
 </script>
@@ -38,6 +39,6 @@ export default {
     box-sizing: border-box;
     overflow: scroll;
     height: inherit;
-    max-height: calc(100vh - 20px);
+    max-height: calc(100vh - 110px);
   }
 </style>

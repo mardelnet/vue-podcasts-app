@@ -7,7 +7,7 @@ import App from './App.vue'
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        { path: '/', component: Home },
+        { path: '/', component: Home, name: 'home' },
         { path: '/podcasts/:id', component: Podcasts, name: 'podcasts' },
     ]
 });
