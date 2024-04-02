@@ -27,9 +27,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-audio {
-  width: 100%;
-}
-</style>
