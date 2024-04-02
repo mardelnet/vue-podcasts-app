@@ -1,50 +1,45 @@
 <template>
   <div class="container">
-    <h2>Top Podcasts</h2>
-    <div v-if="data && data.feed">
-    <swiper
-        v-bind:slides-per-view="5"
-        v-bind:space-between="25"
-    >
-        <swiper-slide 
-        v-for="podcast in data.feed.entry" 
-        v-bind:key="podcast.id.attributes['im:id']"
-        >
-          <router-link v-bind:to="{ name: 'podcasts', params: { id: podcast.id.attributes['im:id'] } }">
-            <div>
-              <img v-bind:src="podcast['im:image'][2].label" />
-              <h3>{{ podcast['im:name'].label }}</h3>
-              <p>{{ podcast.summary.label.substr(0, 50) }}...</p>
-            </div>
-          </router-link>
-        </swiper-slide>
-    </swiper>
-    </div>
+    <podcasts-slider audio-title="Top Albums" v-bind:audio-elements="albums" />
+    <podcasts-slider audio-title="Top Podcasts" v-bind:audio-elements="podcasts" />
+    <podcasts-slider audio-title="Top Audio Books" v-bind:audio-elements="audioBooks" />
   </div>
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import 'swiper/css'
+import PodcastsSlider from './PodcastsSlider.vue';
 
 export default {
   components: {
-    Swiper,
-    SwiperSlide
+    'podcasts-slider': PodcastsSlider,
   },
   methods: {
-    async fetchData() {      
-      const response = await fetch("https://itunes.apple.com/us/rss/toppodcasts/limit=10/json")
-      this.data = await response.json()
-    },    
+    async fetchData(apiUrl) {
+      const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`);
+      const jsonResponse = await response.json();
+      return JSON.parse(jsonResponse.contents);
+    },
+    async fetchAllData() {
+      const albumsPromise = this.fetchData("https://rss.applemarketingtools.com/api/v2/us/music/most-played/10/albums.json");
+      const podcastsPromise = this.fetchData("https://rss.applemarketingtools.com/api/v2/us/podcasts/top/10/podcasts.json");
+      const audioBooksPromise = this.fetchData("https://rss.applemarketingtools.com/api/v2/us/audio-books/top/10/audio-books.json");
+
+      const [albums, podcasts, audioBooks] = await Promise.all([albumsPromise, podcastsPromise, audioBooksPromise]);
+      
+      this.albums = albums;
+      this.podcasts = podcasts;
+      this.audioBooks = audioBooks;
+    },
   },
   data() {
     return {
-      data: null
+      albums: null,
+      podcasts: null,
+      audioBooks: null,
     }
   },
   created() {
-    this.fetchData()
+    this.fetchAllData();
   },
 };
 </script>

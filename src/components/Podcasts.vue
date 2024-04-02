@@ -38,7 +38,6 @@ export default {
       const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`)
       const jsonResponse = await response.json()
       this.data = await JSON.parse(jsonResponse.contents);
-      console.log(this.data)
     },   
     handleClick(episodeUrl) {
       usePodcastStore().setCurrentEpisodeUrl(episodeUrl);
