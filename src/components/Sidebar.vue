@@ -13,8 +13,21 @@
         eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
         deserunt mollit anim id est laborum.
     </div>
+    <div>
+      <audio-player />
+    </div>
   </div>
 </template>
+
+<script>
+import AudioPlayer from './AudioPlayer.vue';
+
+export default {
+  components: {
+    'audio-player': AudioPlayer,
+  },
+};
+</script>
 
 <style scoped>
 .sidebar-container {

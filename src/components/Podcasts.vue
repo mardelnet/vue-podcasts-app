@@ -18,9 +18,9 @@
           {{ podcastData.trackTimeMillis }}
         </td>
         <td>
-          <a href="{{ podcastData.episodeUrl }}">
-            Listen
-          </a>
+          <button @click="handleClick(podcastData.episodeUrl)">
+            Play Podcast
+          </button>
         </td>
       </tr>
     </table>
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import { usePodcastStore } from '../store';
+
 export default {
   methods: {
     async fetchData() {
@@ -37,7 +39,10 @@ export default {
       const jsonResponse = await response.json()
       this.data = await JSON.parse(jsonResponse.contents);
       console.log(this.data)
-    },    
+    },   
+    handleClick(episodeUrl) {
+      usePodcastStore().setCurrentEpisodeUrl(episodeUrl);
+    }, 
   },
   data() {
     return {

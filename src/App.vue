@@ -3,18 +3,15 @@
     <sidebar />
     <router-view></router-view>  
   </div>
-  <audio-player />
 </template>
 
 <script>
 import 'swiper/css';
 import Sidebar from './components/Sidebar.vue';
-import AudioPlayer from './components/AudioPlayer.vue';
 
 export default {
   components: {
     'sidebar': Sidebar,
-    'audio-player': AudioPlayer,
   },
 };
 </script>
